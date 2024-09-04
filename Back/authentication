@@ -1,0 +1,16 @@
+import jwt
+import datetime
+
+def create_token(user_id):
+    payload = {
+        'user_id': user_id,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1),
+        'iat': datetime.datetime.utcnow(),
+        'aud': 'your-audience'
+    }
+    secret_key = 'your-secret-key'  # Keep this secret and secure!
+    return jwt.encode(payload, secret_key, algorithm='HS256')
+
+# Usage
+token = create_token('user123')
+print(token)
